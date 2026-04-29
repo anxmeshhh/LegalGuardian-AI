@@ -144,7 +144,7 @@ python run.py
 
 ### 4. Open in Browser
 
-Navigate to **http://localhost:8000** — the app will load with the premium dark-themed UI.
+Navigate to **http://localhost:5000** — the app will load with the premium dark-themed UI.
 
 ### 5. Try It Out
 

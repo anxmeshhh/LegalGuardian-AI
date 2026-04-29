@@ -44,39 +44,17 @@ def serve_js(filename):
     return send_from_directory(str(FRONTEND_DIR / "js"), filename)
 
 
-# ─── API Routes ───────────────────────────────────────────────────────────────
+# ─── Shared Pipeline Logic ───────────────────────────────────────────────────
 
-@app.route("/api/health", methods=["GET"])
-def health_check():
-    """Health check endpoint."""
-    return jsonify({"status": "healthy", "service": "LegalGuardian AI"})
-
-
-@app.route("/api/doc-types", methods=["GET"])
-def get_document_types():
-    """Return available document types and role options."""
-    return jsonify({"document_types": DOCUMENT_TYPES})
-
-
-@app.route("/api/analyze", methods=["POST"])
-def analyze_contract():
+def _run_pipeline(contract_text: str, document_type: str, user_role: str) -> dict:
     """
-    Main analysis endpoint.
+    Execute the full NLP analysis pipeline.
     
-    Accepts document type, user role, and contract text.
-    Returns full risk report with clause-level analysis.
+    This is the core engine shared by both /api/analyze and /api/analyze-file.
+    Returns the complete analysis response dict, or raises ValueError on bad input.
     """
-    data = request.get_json()
-    
-    if not data:
-        return jsonify({"detail": "Request body is required."}), 400
-    
-    contract_text = data.get("contract_text", "").strip()
-    document_type = data.get("document_type", "other")
-    user_role = data.get("user_role", "general")
-    
     if not contract_text or len(contract_text) < 50:
-        return jsonify({"detail": "Contract text is too short. Please provide at least 50 characters."}), 400
+        raise ValueError("Contract text is too short. Please provide at least 50 characters.")
     
     # Initialize components
     classifier = get_classifier()
@@ -89,7 +67,7 @@ def analyze_contract():
     clauses = segment_clauses(clean_text_content)
     
     if not clauses:
-        return jsonify({"detail": "Could not segment the contract into clauses. Please check the format."}), 400
+        raise ValueError("Could not segment the contract into clauses. Please check the format.")
     
     # Step 2: Analyze each clause
     analyzed_clauses = []
@@ -122,7 +100,7 @@ def analyze_contract():
             role=user_role
         )
         
-        analyzed_clause = {
+        analyzed_clauses.append({
             "id": clause["id"],
             "title": clause["title"],
             "text": clause["text"],
@@ -139,9 +117,7 @@ def analyze_contract():
             "summary": explanation["summary"],
             "key_terms": explanation["key_terms"],
             "recommendations": recs
-        }
-        
-        analyzed_clauses.append(analyzed_clause)
+        })
         clause_risks.append(risk)
     
     # Step 3: Compute document-level risk
@@ -149,12 +125,12 @@ def analyze_contract():
     
     # Step 4: Get document-level recommendations
     doc_recs = recommender.get_document_recommendations(
-        [{"clause_type": c["clause_type"], "risk_level": c["risk_level"]} 
+        [{"clause_type": c["clause_type"], "risk_level": c["risk_level"]}
          for c in analyzed_clauses]
     )
     
     # Step 5: Build response
-    response = {
+    return {
         "document_summary": {
             "total_clauses": doc_risk["total_clauses"],
             "risk_breakdown": doc_risk["risk_breakdown"],
@@ -167,8 +143,41 @@ def analyze_contract():
         "clauses": analyzed_clauses,
         "disclaimer": "⚖️ This analysis is for informational purposes only and does not constitute legal advice. Always consult a qualified attorney for legal matters."
     }
+
+
+# ─── API Routes ───────────────────────────────────────────────────────────────
+
+@app.route("/api/health", methods=["GET"])
+def health_check():
+    """Health check endpoint."""
+    return jsonify({"status": "healthy", "service": "LegalGuardian AI"})
+
+
+@app.route("/api/doc-types", methods=["GET"])
+def get_document_types():
+    """Return available document types and role options."""
+    return jsonify({"document_types": DOCUMENT_TYPES})
+
+
+@app.route("/api/analyze", methods=["POST"])
+def analyze_contract():
+    """
+    Main analysis endpoint.
+    Accepts JSON with contract_text, document_type, user_role.
+    """
+    data = request.get_json()
+    if not data:
+        return jsonify({"detail": "Request body is required."}), 400
     
-    return jsonify(response)
+    try:
+        result = _run_pipeline(
+            contract_text=data.get("contract_text", "").strip(),
+            document_type=data.get("document_type", "other"),
+            user_role=data.get("user_role", "general")
+        )
+        return jsonify(result)
+    except ValueError as e:
+        return jsonify({"detail": str(e)}), 400
 
 
 @app.route("/api/analyze-file", methods=["POST"])
@@ -191,17 +200,16 @@ def analyze_file():
     except ValueError as e:
         return jsonify({"detail": str(e)}), 400
     
-    # Reuse the analyze logic by building a fake request
-    # We call the analysis pipeline directly
-    data = {
-        "contract_text": text,
-        "document_type": document_type,
-        "user_role": user_role
-    }
-    
-    # Temporarily set the JSON data for the analyze endpoint
-    with app.test_request_context(json=data):
-        return analyze_contract()
+    # Run through the shared pipeline
+    try:
+        result = _run_pipeline(
+            contract_text=text,
+            document_type=document_type,
+            user_role=user_role
+        )
+        return jsonify(result)
+    except ValueError as e:
+        return jsonify({"detail": str(e)}), 400
 
 
 @app.route("/api/qa", methods=["POST"])

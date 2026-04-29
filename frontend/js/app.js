@@ -47,8 +47,13 @@ document.addEventListener('DOMContentLoaded', () => {
     UI.elements.navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
-            const section = link.dataset.section + '-section';
-            UI.showSection(section);
+            const section = link.dataset.section;
+            if (section === 'pipeline') {
+                // Pipeline is always visible — just scroll to it
+                document.getElementById('pipeline-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else {
+                UI.showSection(section + '-section');
+            }
         });
     });
 

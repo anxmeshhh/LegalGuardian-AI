@@ -32,13 +32,16 @@ const UI = {
     
     /** Show a specific section and update nav */
     showSection(sectionId) {
-        // Hide all sections
-        document.querySelectorAll('.section').forEach(s => s.classList.add('hidden'));
-        
-        // Show target section
+        // Only hide the togglable sections (not the pipeline demo which is always visible)
+        const togglable = ['input-section', 'results-section', 'qa-section'];
+        togglable.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.classList.toggle('hidden', id !== sectionId);
+        });
+
+        // Scroll to target
         const target = document.getElementById(sectionId);
         if (target) {
-            target.classList.remove('hidden');
             target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 

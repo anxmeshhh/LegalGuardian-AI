@@ -136,5 +136,5 @@ RISK_LEVELS = {
 
 # ─── Server Configuration ────────────────────────────────────────────────────
 API_HOST = "0.0.0.0"
-API_PORT = 8000
+API_PORT = 5000
 CORS_ORIGINS = ["*"]  # Allow all origins for development
