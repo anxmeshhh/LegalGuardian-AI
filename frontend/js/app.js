@@ -147,14 +147,28 @@ document.addEventListener('DOMContentLoaded', () => {
         UI.setLoading(true);
         UI.setStatus('Analyzing...', 'loading');
         
+        // Stop any currently running pipeline demo
+        Pipeline.stopAutoPlay();
+        
+        // Scroll to pipeline section so user can watch the demo
+        document.getElementById('pipeline-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        
         try {
-            // Call API
-            const data = await API.analyzeContract(contractText, documentType, userRole);
+            // Create a promise that resolves when the pipeline demo finishes (speed it up to 2 seconds per step)
+            const pipelinePromise = new Promise(resolve => {
+                Pipeline.startAutoPlay(resolve, 2000); 
+            });
+            
+            // Call API asynchronously
+            const apiPromise = API.analyzeContract(contractText, documentType, userRole);
+            
+            // Wait for BOTH the API to return AND the educational pipeline demo to finish
+            const [data] = await Promise.all([apiPromise, pipelinePromise]);
             
             // Render results
             Results.render(data);
             
-            // Show results section
+            // Show results section and automatically scroll to it
             UI.showSection('results-section');
             
             // Enable Q&A
@@ -165,6 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
         } catch (error) {
             console.error('Analysis error:', error);
+            Pipeline.stopAutoPlay(); // ensure we stop the demo on error
             UI.showError(error.message || 'Failed to analyze contract. Make sure the backend is running.');
         } finally {
             UI.setLoading(false);

@@ -239,7 +239,7 @@ const Pipeline = {
         }
     },
 
-    startAutoPlay() {
+    startAutoPlay(onComplete, intervalMs = 3000) {
         const btn = document.getElementById('pipeline-play-btn');
         this.isPlaying = true;
         if (btn) {
@@ -251,8 +251,11 @@ const Pipeline = {
         this.autoPlayInterval = setInterval(() => {
             const next = (this.currentStep + 1) % this.steps.length;
             this.selectStep(next);
-            if (next === 0) this.stopAutoPlay();  // Stop after full cycle
-        }, 3000);
+            if (next === 0) {
+                this.stopAutoPlay();  // Stop after full cycle
+                if (typeof onComplete === 'function') onComplete();
+            }
+        }, intervalMs);
     },
 
     stopAutoPlay() {
