@@ -1,20 +1,16 @@
 """
-LegalGuardian AI — FastAPI Backend Application
+LegalGuardian AI — Flask Backend Application
 
 Main API server that orchestrates the NLP pipeline:
 Input → Preprocess → Classify → Score → Explain → Recommend → Output
 """
 
-from fastapi import FastAPI, UploadFile, File, Form, HTTPException
-from fastapi.middleware.cors import CORSMiddleware
-from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse
-from pydantic import BaseModel
-from typing import Optional, List
-import os
+from flask import Flask, request, jsonify, send_from_directory
+from flask_cors import CORS
 from pathlib import Path
+import os
 
-from .config import DOCUMENT_TYPES, CORS_ORIGINS, API_HOST, API_PORT
+from .config import DOCUMENT_TYPES, API_HOST, API_PORT
 from .services.preprocessor import extract_text, segment_clauses
 from .models.clause_classifier import get_classifier
 from .models.risk_scorer import get_risk_scorer
@@ -22,73 +18,65 @@ from .services.explainer import get_explainer
 from .services.recommender import get_recommender
 
 # ─── App Setup ────────────────────────────────────────────────────────────────
-app = FastAPI(
-    title="LegalGuardian AI",
-    description="NLP-Powered Legal Contract Risk Analysis & Decision-Support System",
-    version="1.0.0"
-)
+app = Flask(__name__, static_folder=None)
+CORS(app)
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=CORS_ORIGINS,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-# Serve frontend static files
 FRONTEND_DIR = Path(__file__).resolve().parent.parent / "frontend"
-if FRONTEND_DIR.exists():
-    app.mount("/static", StaticFiles(directory=str(FRONTEND_DIR)), name="static")
 
 
-# ─── Request / Response Models ────────────────────────────────────────────────
-class AnalyzeRequest(BaseModel):
-    contract_text: str
-    document_type: str = "other"
-    user_role: str = "general"
+# ─── Frontend Serving ─────────────────────────────────────────────────────────
 
-class QARequest(BaseModel):
-    contract_text: str
-    question: str
+@app.route("/")
+def serve_frontend():
+    """Serve the main HTML page."""
+    return send_from_directory(str(FRONTEND_DIR), "index.html")
 
 
-# ─── Routes ───────────────────────────────────────────────────────────────────
-
-@app.get("/")
-async def serve_frontend():
-    """Serve the frontend application."""
-    index_path = FRONTEND_DIR / "index.html"
-    if index_path.exists():
-        return FileResponse(str(index_path))
-    return {"message": "LegalGuardian AI API is running. Frontend not found."}
+@app.route("/css/<path:filename>")
+def serve_css(filename):
+    """Serve CSS files."""
+    return send_from_directory(str(FRONTEND_DIR / "css"), filename)
 
 
-@app.get("/api/health")
-async def health_check():
+@app.route("/js/<path:filename>")
+def serve_js(filename):
+    """Serve JavaScript files."""
+    return send_from_directory(str(FRONTEND_DIR / "js"), filename)
+
+
+# ─── API Routes ───────────────────────────────────────────────────────────────
+
+@app.route("/api/health", methods=["GET"])
+def health_check():
     """Health check endpoint."""
-    return {"status": "healthy", "service": "LegalGuardian AI"}
+    return jsonify({"status": "healthy", "service": "LegalGuardian AI"})
 
 
-@app.get("/api/doc-types")
-async def get_document_types():
+@app.route("/api/doc-types", methods=["GET"])
+def get_document_types():
     """Return available document types and role options."""
-    return {"document_types": DOCUMENT_TYPES}
+    return jsonify({"document_types": DOCUMENT_TYPES})
 
 
-@app.post("/api/analyze")
-async def analyze_contract(request: AnalyzeRequest):
+@app.route("/api/analyze", methods=["POST"])
+def analyze_contract():
     """
     Main analysis endpoint.
     
     Accepts document type, user role, and contract text.
     Returns full risk report with clause-level analysis.
     """
-    if not request.contract_text or len(request.contract_text.strip()) < 50:
-        raise HTTPException(
-            status_code=400,
-            detail="Contract text is too short. Please provide at least 50 characters."
-        )
+    data = request.get_json()
+    
+    if not data:
+        return jsonify({"detail": "Request body is required."}), 400
+    
+    contract_text = data.get("contract_text", "").strip()
+    document_type = data.get("document_type", "other")
+    user_role = data.get("user_role", "general")
+    
+    if not contract_text or len(contract_text) < 50:
+        return jsonify({"detail": "Contract text is too short. Please provide at least 50 characters."}), 400
     
     # Initialize components
     classifier = get_classifier()
@@ -97,14 +85,11 @@ async def analyze_contract(request: AnalyzeRequest):
     recommender = get_recommender()
     
     # Step 1: Clean and segment the contract
-    clean_text_content = extract_text(request.contract_text)
+    clean_text_content = extract_text(contract_text)
     clauses = segment_clauses(clean_text_content)
     
     if not clauses:
-        raise HTTPException(
-            status_code=400,
-            detail="Could not segment the contract into clauses. Please check the format."
-        )
+        return jsonify({"detail": "Could not segment the contract into clauses. Please check the format."}), 400
     
     # Step 2: Analyze each clause
     analyzed_clauses = []
@@ -118,15 +103,15 @@ async def analyze_contract(request: AnalyzeRequest):
         risk = scorer.score_clause(
             clause_text=clause["text"],
             clause_type=classification["clause_type"],
-            role=request.user_role,
-            doc_type=request.document_type
+            role=user_role,
+            doc_type=document_type
         )
         
         # Generate explanation
         explanation = explainer.explain_clause(
             clause_text=clause["text"],
             clause_type=classification["clause_type"],
-            role=request.user_role,
+            role=user_role,
             risk_level=risk["risk_level"]
         )
         
@@ -134,7 +119,7 @@ async def analyze_contract(request: AnalyzeRequest):
         recs = recommender.get_recommendations(
             clause_type=classification["clause_type"],
             risk_level=risk["risk_level"],
-            role=request.user_role
+            role=user_role
         )
         
         analyzed_clause = {
@@ -175,79 +160,83 @@ async def analyze_contract(request: AnalyzeRequest):
             "risk_breakdown": doc_risk["risk_breakdown"],
             "overall_risk_score": doc_risk["overall_risk_score"],
             "overall_risk_level": doc_risk["overall_risk_level"],
-            "document_type": DOCUMENT_TYPES.get(request.document_type, {}).get("label", "Unknown"),
-            "user_role": request.user_role,
+            "document_type": DOCUMENT_TYPES.get(document_type, {}).get("label", "Unknown"),
+            "user_role": user_role,
             "document_recommendations": doc_recs
         },
         "clauses": analyzed_clauses,
         "disclaimer": "⚖️ This analysis is for informational purposes only and does not constitute legal advice. Always consult a qualified attorney for legal matters."
     }
     
-    return response
+    return jsonify(response)
 
 
-@app.post("/api/analyze-file")
-async def analyze_file(
-    file: UploadFile = File(...),
-    document_type: str = Form("other"),
-    user_role: str = Form("general")
-):
+@app.route("/api/analyze-file", methods=["POST"])
+def analyze_file():
     """Analyze an uploaded contract file (PDF, DOCX, or TXT)."""
-    # Validate file type
-    allowed_types = [
-        "application/pdf", "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-        "text/plain"
-    ]
+    if "file" not in request.files:
+        return jsonify({"detail": "No file uploaded."}), 400
     
-    content = await file.read()
+    file = request.files["file"]
+    document_type = request.form.get("document_type", "other")
+    user_role = request.form.get("user_role", "general")
     
+    content = file.read()
     if not content:
-        raise HTTPException(status_code=400, detail="Empty file uploaded.")
+        return jsonify({"detail": "Empty file uploaded."}), 400
     
     # Extract text from file
     try:
         text = extract_text("", file_bytes=content, file_type=file.content_type or file.filename)
     except ValueError as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        return jsonify({"detail": str(e)}), 400
     
-    # Use the text analysis endpoint
-    request = AnalyzeRequest(
-        contract_text=text,
-        document_type=document_type,
-        user_role=user_role
-    )
-    return await analyze_contract(request)
+    # Reuse the analyze logic by building a fake request
+    # We call the analysis pipeline directly
+    data = {
+        "contract_text": text,
+        "document_type": document_type,
+        "user_role": user_role
+    }
+    
+    # Temporarily set the JSON data for the analyze endpoint
+    with app.test_request_context(json=data):
+        return analyze_contract()
 
 
-@app.post("/api/qa")
-async def question_answer(request: QARequest):
+@app.route("/api/qa", methods=["POST"])
+def question_answer():
     """Answer a question about the contract."""
-    if not request.contract_text or not request.question:
-        raise HTTPException(
-            status_code=400,
-            detail="Both contract text and question are required."
-        )
+    data = request.get_json()
+    
+    if not data:
+        return jsonify({"detail": "Request body is required."}), 400
+    
+    contract_text = data.get("contract_text", "")
+    question = data.get("question", "")
+    
+    if not contract_text or not question:
+        return jsonify({"detail": "Both contract text and question are required."}), 400
     
     try:
         from .models.qa_model import get_qa_model
         qa = get_qa_model()
-        result = qa.answer(request.question, request.contract_text)
-        return result
+        result = qa.answer(question, contract_text)
+        return jsonify(result)
     except Exception as e:
-        # Fallback: return a helpful message
-        return {
-            "answer": f"QA model is not available. Error: {str(e)}. Please ensure transformers library is installed.",
+        return jsonify({
+            "answer": f"QA model encountered an issue: {str(e)}. Using keyword-based search.",
             "confidence": 0.0,
             "method": "error"
-        }
+        })
 
 
 # ─── Entry Point ──────────────────────────────────────────────────────────────
+
+def create_app():
+    """Application factory for production use."""
+    return app
+
+
 if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(
-        "backend.app:app",
-        host=API_HOST,
-        port=API_PORT,
-        reload=True
-    )
+    app.run(host=API_HOST, port=API_PORT, debug=True)

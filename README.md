@@ -61,7 +61,7 @@ With just **two clicks + one paste**, the analysis becomes personalized:
 ```
 LegalGuardian-AI/
 │
-├── backend/                          # FastAPI Python Backend
+├── backend/                          # Flask Python Backend
 │   ├── app.py                        # API server (main entry point)
 │   ├── config.py                     # Configuration & constants
 │   │
@@ -92,6 +92,7 @@ LegalGuardian-AI/
 │   │   ├── input-panel.css           # 3-step input form
 │   │   ├── results.css               # Risk dashboard, heatmap, clause cards
 │   │   ├── qa-panel.css              # Q&A chat interface
+│   │   ├── pipeline.css             # Pipeline demo visualization
 │   │   ├── animations.css            # Micro-animations & transitions
 │   │   └── responsive.css            # Mobile & tablet breakpoints
 │   │
@@ -101,6 +102,7 @@ LegalGuardian-AI/
 │       ├── ui.js                     # DOM utilities & form management
 │       ├── results.js                # Results rendering (gauge, cards, heatmap)
 │       ├── qa.js                     # Q&A chat panel controller
+│       ├── pipeline.js              # Interactive pipeline demo
 │       └── app.js                    # Main application controller
 │
 ├── sample_contracts/                 # Demo Contracts for Testing
@@ -137,7 +139,7 @@ pip install -r requirements.txt
 ### 3. Run the Application
 
 ```bash
-python -m uvicorn backend.app:app --reload --port 8000
+python run.py
 ```
 
 ### 4. Open in Browser
@@ -280,7 +282,7 @@ Three realistic sample contracts are included for testing, each designed with in
 
 | Layer | Technology | Purpose |
 |---|---|---|
-| **Backend** | FastAPI (Python) | REST API, async, auto-docs at `/docs` |
+| **Backend** | Flask (Python) | REST API, lightweight, easy to deploy |
 | **ML/NLP** | PyTorch + Transformers | Legal-BERT, BERT-QA models |
 | **Frontend** | HTML5 + CSS3 + Vanilla JS | Premium SPA, no framework needed |
 | **Data** | CUAD Dataset | 41 clause types, 510 contracts |

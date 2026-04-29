@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ─── Initialize ──────────────────────────────────────────────
     UI.cacheElements();
     QA.init();
+    Pipeline.init();
     loadDocumentTypes();
 
     // ─── Event Listeners ─────────────────────────────────────────

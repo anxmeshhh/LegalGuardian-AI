@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="css/results.css">
     <link rel="stylesheet" href="css/qa-panel.css">
     <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/pipeline.css">
     <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
@@ -37,6 +38,7 @@
             <span class="nav-title">LegalGuardian<span class="nav-ai">AI</span></span>
         </div>
         <div class="nav-links">
+            <a href="#pipeline-section" class="nav-link" data-section="pipeline">How It Works</a>
             <a href="#input-section" class="nav-link active" data-section="input">Analyze</a>
             <a href="#results-section" class="nav-link" data-section="results">Results</a>
             <a href="#qa-section" class="nav-link" data-section="qa">Q&A</a>
@@ -85,7 +87,26 @@
 
     <!-- ─── Main Content ─── -->
     <main class="main-content">
-        
+
+        <!-- ─── Pipeline Demo Section ─── -->
+        <section class="section pipeline-demo" id="pipeline-section">
+            <div class="section-header">
+                <h2 class="section-title">🧠 How the NLP Pipeline Works</h2>
+                <p class="section-subtitle">Click any stage to learn more — or play the demo to see the full flow</p>
+            </div>
+            <div class="pipeline-container">
+                <div class="pipeline-flow" id="pipeline-flow">
+                    <!-- Steps rendered by pipeline.js -->
+                </div>
+                <div class="pipeline-detail" id="pipeline-detail">
+                    <!-- Detail panel rendered by pipeline.js -->
+                </div>
+                <div class="pipeline-controls">
+                    <button class="pipeline-play-btn" id="pipeline-play-btn">▶ Play Pipeline Demo</button>
+                </div>
+            </div>
+        </section>
+
         <!-- ─── Input Section (Smart 3-Step) ─── -->
         <section class="section" id="input-section">
             <div class="section-header">
@@ -277,7 +298,7 @@
                 Always consult a qualified attorney for legal matters.
             </p>
             <p class="footer-credits">
-                Built with Legal-BERT · CUAD Dataset · FastAPI · Python
+                Built with Legal-BERT · CUAD Dataset · Flask · Python
             </p>
         </div>
     </footer>
@@ -288,6 +309,7 @@
     <script src="js/ui.js"></script>
     <script src="js/results.js"></script>
     <script src="js/qa.js"></script>
+    <script src="js/pipeline.js"></script>
     <script src="js/app.js"></script>
 </body>
 </html>
