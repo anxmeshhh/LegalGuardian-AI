@@ -1,0 +1,154 @@
+{
+  "terms": {
+    "indemnify": {
+      "definition": "To compensate someone for a loss or damage they suffered",
+      "plain_english": "You agree to pay for any losses the other party suffers",
+      "risk_note": "One-sided indemnification means only YOU pay"
+    },
+    "indemnification": {
+      "definition": "A contractual obligation to compensate another party for losses",
+      "plain_english": "A promise to cover the other party's losses or legal costs",
+      "risk_note": "Check who is indemnifying whom"
+    },
+    "liability": {
+      "definition": "Legal responsibility for something, especially financial obligations",
+      "plain_english": "Who is responsible if something goes wrong",
+      "risk_note": "Look for caps on liability — unlimited liability is very risky"
+    },
+    "limitation of liability": {
+      "definition": "A clause that caps the maximum amount one party can be held responsible for",
+      "plain_english": "There's a maximum amount you'd have to pay if things go wrong",
+      "risk_note": "Make sure the cap protects you, not just them"
+    },
+    "non-compete": {
+      "definition": "A clause preventing a party from engaging in competing business activities",
+      "plain_english": "You can't work for or start a competing business for a period after this contract ends",
+      "risk_note": "Check duration and geographic scope"
+    },
+    "non-solicitation": {
+      "definition": "Prevents recruiting employees or clients of the other party",
+      "plain_english": "You can't try to hire their employees or steal their customers",
+      "risk_note": "Check the duration"
+    },
+    "non-disparagement": {
+      "definition": "Prevents making negative public statements about each other",
+      "plain_english": "You can't publicly say bad things about the other party",
+      "risk_note": "Can limit your ability to leave honest reviews"
+    },
+    "termination for convenience": {
+      "definition": "The right to end a contract at any time without needing a reason",
+      "plain_english": "They can cancel whenever they want, no reason needed",
+      "risk_note": "Very risky if only one party has this right"
+    },
+    "force majeure": {
+      "definition": "Excuses performance when extraordinary events occur",
+      "plain_english": "Neither side is at fault if something unexpected happens (natural disaster, pandemic)",
+      "risk_note": "Check what events are covered"
+    },
+    "arbitration": {
+      "definition": "Dispute resolution where a private third party makes a binding decision",
+      "plain_english": "If there's a disagreement, you go to a private judge instead of court",
+      "risk_note": "May limit your legal rights — you usually can't appeal"
+    },
+    "governing law": {
+      "definition": "The jurisdiction whose laws will interpret and enforce the contract",
+      "plain_english": "Which state/country's laws apply if there's a dispute",
+      "risk_note": "Make sure it's a jurisdiction you can access"
+    },
+    "assignment": {
+      "definition": "Transfer of contractual rights or obligations to a third party",
+      "plain_english": "Whether either party can hand off responsibilities to someone else",
+      "risk_note": "Anti-assignment clauses protect you from dealing with an unknown party"
+    },
+    "confidentiality": {
+      "definition": "An obligation to keep certain information private",
+      "plain_english": "You must keep their secrets",
+      "risk_note": "Indefinite confidentiality obligations are very restrictive"
+    },
+    "intellectual property": {
+      "definition": "Creative works, inventions, and ideas with legal protections",
+      "plain_english": "Who owns the ideas, code, or creative work produced under this contract",
+      "risk_note": "IP assignment can transfer YOUR work to them"
+    },
+    "warranty": {
+      "definition": "A promise or guarantee that something is true or will happen",
+      "plain_english": "A promise that the product/service will work as described",
+      "risk_note": "Check warranty duration and exclusions"
+    },
+    "as is": {
+      "definition": "Provided without any warranties or guarantees",
+      "plain_english": "They're not promising it works — you get it in current condition",
+      "risk_note": "Very risky for buyers — no recourse if something is wrong"
+    },
+    "waiver": {
+      "definition": "Voluntarily giving up a legal right or claim",
+      "plain_english": "You're agreeing to give up certain rights",
+      "risk_note": "Read carefully what rights you're waiving"
+    },
+    "severability": {
+      "definition": "If one part of the contract is invalid, the rest still applies",
+      "plain_english": "If a court strikes down one clause, the rest still stands",
+      "risk_note": "Generally protective — standard clause"
+    },
+    "liquidated damages": {
+      "definition": "Pre-determined compensation amount for a breach",
+      "plain_english": "If you break the contract, you owe a specific dollar amount decided upfront",
+      "risk_note": "Check if the amount is reasonable"
+    },
+    "auto-renewal": {
+      "definition": "Contract automatically extends unless one party opts out",
+      "plain_english": "This contract keeps renewing unless you actively cancel it",
+      "risk_note": "Check the notice period — you might need to cancel 30-90 days before renewal"
+    },
+    "sole discretion": {
+      "definition": "One party has absolute decision-making power",
+      "plain_english": "They can decide whatever they want without explanation",
+      "risk_note": "Very one-sided — gives unchecked power"
+    },
+    "perpetual": {
+      "definition": "Lasting forever, with no end date",
+      "plain_english": "This obligation or right never expires",
+      "risk_note": "Negotiate an end date if possible"
+    },
+    "irrevocable": {
+      "definition": "Cannot be taken back or undone once granted",
+      "plain_english": "Once you agree, you can't change your mind — ever",
+      "risk_note": "Be very careful with irrevocable rights"
+    },
+    "mutual": {
+      "definition": "Applying equally to both parties",
+      "plain_english": "This applies to both sides equally",
+      "risk_note": "Mutual clauses are generally fairer"
+    },
+    "unilateral": {
+      "definition": "Applying to only one party",
+      "plain_english": "Only ONE side has to follow this rule",
+      "risk_note": "One-sided obligations are red flags"
+    },
+    "breach": {
+      "definition": "A violation or failure to fulfill a contractual obligation",
+      "plain_english": "Breaking the rules of the contract",
+      "risk_note": "Understand what counts as breach and the penalties"
+    },
+    "material breach": {
+      "definition": "A significant violation undermining the core purpose of the contract",
+      "plain_english": "A serious rule-break that defeats the whole point of the agreement",
+      "risk_note": "Usually allows immediate termination"
+    },
+    "good faith": {
+      "definition": "An obligation to act honestly and fairly",
+      "plain_english": "Both sides must be honest and fair — no sneaky tricks",
+      "risk_note": "Implied in most contracts even if not stated"
+    },
+    "change of control": {
+      "definition": "Provisions applying when a party is acquired or ownership changes",
+      "plain_english": "What happens to this contract if the company gets bought",
+      "risk_note": "You could end up bound to a different company"
+    },
+    "right of first refusal": {
+      "definition": "The right to match any offer before the other party accepts elsewhere",
+      "plain_english": "They must give you the chance to match any competing offer first",
+      "risk_note": "Limits negotiation flexibility"
+    }
+  }
+}

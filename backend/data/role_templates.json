@@ -1,0 +1,119 @@
+{
+  "role_templates": {
+    "employee": {
+      "perspective": "As the employee",
+      "vulnerability": "you are the more vulnerable party in this employment relationship",
+      "clause_frames": {
+        "Non-Compete": "⚠️ As the employee, this clause means YOU cannot work in this industry for the specified period after leaving. This directly limits your career options and income potential.",
+        "Termination For Convenience": "🔴 The employer can terminate your employment at any time without cause. You have limited job security under this clause.",
+        "Ip Ownership Assignment": "🔴 Any work, inventions, or ideas you create during employment become the EMPLOYER's property — not yours. This includes side projects if broadly worded.",
+        "Indemnification": "⚠️ You may be required to personally cover the employer's losses. Check if this is mutual or one-sided.",
+        "Uncapped Liability": "🔴 There is no limit on how much you could owe. This is extremely risky for you as an individual.",
+        "Non-Disparagement": "⚠️ You cannot publicly criticize the employer, even after leaving. This limits your ability to warn others or leave honest reviews.",
+        "Exclusivity": "🔴 You cannot take on other work or clients while employed. This restricts your income sources."
+      }
+    },
+    "employer": {
+      "perspective": "As the employer",
+      "vulnerability": "you hold more power in this relationship but still have obligations",
+      "clause_frames": {
+        "Non-Compete": "🟢 This protects your business from employees joining competitors. Ensure it's reasonable in scope to be enforceable.",
+        "Termination For Convenience": "🟢 You retain flexibility to end employment. Standard clause in your favor.",
+        "Ip Ownership Assignment": "🟢 Work created by employees belongs to your company. Standard and protective.",
+        "Indemnification": "🟡 Ensure indemnification is appropriately scoped to protect the company.",
+        "Uncapped Liability": "🟡 Be aware this exposes the company to unlimited claims."
+      }
+    },
+    "tenant": {
+      "perspective": "As the tenant",
+      "vulnerability": "you have less negotiating power and are dependent on the property",
+      "clause_frames": {
+        "Termination For Convenience": "🔴 If only the LANDLORD can terminate at will, you could lose your home with minimal notice. Check if you have the same right.",
+        "Renewal Term": "⚠️ Auto-renewal can lock you into another lease term if you miss the cancellation window. Mark the deadline in your calendar.",
+        "Notice Period To Terminate Renewal": "⚠️ You must give notice X days before the lease ends to avoid auto-renewal. Missing this deadline traps you in another term.",
+        "Indemnification": "🔴 You may be liable for ALL damages, repairs, and legal costs — even those not your fault. Push for mutual indemnification.",
+        "Uncapped Liability": "🔴 There is no limit on what you could owe for damages. Negotiate a reasonable cap.",
+        "Liquidated Damages": "🔴 Pre-set penalty amounts for breaking the lease. Check if these amounts are reasonable."
+      }
+    },
+    "landlord": {
+      "perspective": "As the landlord",
+      "vulnerability": "you own the property but must comply with tenant protection laws",
+      "clause_frames": {
+        "Termination For Convenience": "🟢 You retain the right to end the lease. Ensure compliance with local tenant protection laws.",
+        "Renewal Term": "🟢 Auto-renewal provides rental income stability.",
+        "Indemnification": "🟢 Tenant indemnification protects your property investment.",
+        "Uncapped Liability": "🟢 Tenant assumes full liability. Standard in your favor."
+      }
+    },
+    "service_provider": {
+      "perspective": "As the service provider/freelancer",
+      "vulnerability": "you are trading your skills for payment and need to protect your work and limit exposure",
+      "clause_frames": {
+        "Ip Ownership Assignment": "🔴 ALL work you create under this contract becomes the CLIENT's property. You cannot reuse, showcase, or sell it. Negotiate to retain portfolio rights.",
+        "Uncapped Liability": "🔴 If something goes wrong, there is NO LIMIT on what you could owe. A single mistake could bankrupt you. ALWAYS negotiate a liability cap.",
+        "Indemnification": "🔴 You must cover the client's losses. Ensure this is mutual and reasonably scoped.",
+        "Non-Compete": "🔴 You cannot work with competing clients. This directly cuts your income — negotiate a narrow scope.",
+        "Exclusivity": "🔴 You can only work for THIS client. This eliminates all other income sources.",
+        "Termination For Convenience": "🔴 The client can end the contract at any time without paying for work in progress. Negotiate a kill fee.",
+        "Cap On Liability": "🟡 There's a cap, but check if it's reasonable relative to your fees."
+      }
+    },
+    "client": {
+      "perspective": "As the client",
+      "vulnerability": "you are paying for services and need to ensure quality and ownership",
+      "clause_frames": {
+        "Ip Ownership Assignment": "🟢 Work created belongs to you. Standard and protective for clients.",
+        "Uncapped Liability": "🟢 The provider assumes full liability for their work.",
+        "Indemnification": "🟢 The provider covers your losses. Ensure this is clearly stated.",
+        "Termination For Convenience": "🟢 You can end the engagement if needs change. Flexible for you."
+      }
+    },
+    "borrower": {
+      "perspective": "As the borrower",
+      "vulnerability": "you are in a financially dependent position and need to understand all costs",
+      "clause_frames": {
+        "Uncapped Liability": "🔴 No limit on penalties. Default could have devastating financial consequences.",
+        "Liquidated Damages": "🔴 Pre-set penalty for missed payments or default. Check if amounts are reasonable.",
+        "Indemnification": "🔴 You bear all costs if something goes wrong. Check the scope carefully.",
+        "Termination For Convenience": "🔴 The lender can call the loan at any time. This creates severe financial uncertainty.",
+        "Minimum Commitment": "🔴 You must borrow/repay a minimum amount. Check if you can prepay without penalty."
+      }
+    },
+    "lender": {
+      "perspective": "As the lender",
+      "vulnerability": "you need to protect your investment and ensure repayment",
+      "clause_frames": {
+        "Uncapped Liability": "🟢 Borrower assumes full liability. Standard protection for lenders.",
+        "Liquidated Damages": "🟢 Pre-set penalties protect your returns.",
+        "Termination For Convenience": "🟢 You retain the right to call the loan if needed."
+      }
+    },
+    "policyholder": {
+      "perspective": "As the policyholder/insured",
+      "vulnerability": "you depend on this policy for protection when things go wrong",
+      "clause_frames": {
+        "Uncapped Liability": "🔴 You may be liable for unlimited amounts not covered by insurance.",
+        "Indemnification": "🔴 You must cover the insurer's losses — this is backwards and very risky.",
+        "Covenant Not To Sue": "🔴 You WAIVE your right to sue the insurer. This removes your primary recourse if they deny a claim.",
+        "Termination For Convenience": "🔴 The insurer can cancel your policy at any time. You could lose coverage when you need it most."
+      }
+    },
+    "user": {
+      "perspective": "As the user/consumer",
+      "vulnerability": "you have virtually no negotiating power — it's take-it-or-leave-it",
+      "clause_frames": {
+        "Covenant Not To Sue": "🔴 You WAIVE your right to sue. You can only go through their arbitration process.",
+        "Indemnification": "🔴 You must cover THEIR losses if they get sued because of your use of the platform.",
+        "Uncapped Liability": "🔴 No limit on what you could owe. Extremely risky.",
+        "Termination For Convenience": "🔴 They can terminate your account at any time, potentially losing your data.",
+        "Ip Ownership Assignment": "🔴 Content you create on the platform may become THEIR property. Read carefully."
+      }
+    },
+    "general": {
+      "perspective": "In general",
+      "vulnerability": "review each clause carefully to understand your rights and obligations",
+      "clause_frames": {}
+    }
+  }
+}

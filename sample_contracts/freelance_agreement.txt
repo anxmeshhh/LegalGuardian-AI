@@ -1,0 +1,52 @@
+FREELANCE SERVICE AGREEMENT
+
+This Freelance Service Agreement ("Agreement") is entered into as of February 10, 2025, by and between Digital Solutions Corp. ("Client") and Priya Sharma ("Service Provider").
+
+Section 1. Scope of Work
+The Service Provider shall design and develop a custom e-commerce website for the Client, including front-end design, back-end development, payment integration, and content management system setup, as further detailed in Exhibit A (attached hereto).
+
+Section 2. Compensation
+The Client shall pay the Service Provider a total fee of $15,000, payable as follows: 10% upon signing, 40% upon completion of design mockups, and 50% upon final delivery and acceptance. Payment shall be made within forty-five (45) days of each invoice. Late payments shall not accrue interest.
+
+Section 3. Timeline
+The Service Provider shall complete all deliverables within ninety (90) days of the Effective Date. Failure to meet this deadline shall entitle the Client to a 5% discount per week of delay, up to a maximum of 25%.
+
+Section 4. Intellectual Property
+All work product, including but not limited to designs, code, documentation, graphics, and any derivative works created by the Service Provider in connection with this Agreement, shall be the sole and exclusive property of the Client. The Service Provider hereby irrevocably assigns all intellectual property rights, including copyrights, patents, and trade secrets, to the Client. The Service Provider shall not retain any copies, reuse any components, or display the work in any portfolio without the Client's prior written consent.
+
+Section 5. Confidentiality
+The Service Provider shall maintain strict confidentiality regarding all Client information, including but not limited to business plans, customer data, financial information, and technical specifications. This obligation shall survive termination of this Agreement for a period of five (5) years.
+
+Section 6. Non-Compete
+For a period of twelve (12) months following the completion or termination of this Agreement, the Service Provider shall not provide similar services to any direct competitor of the Client, as determined by the Client in its sole discretion.
+
+Section 7. Indemnification
+The Service Provider shall indemnify, defend, and hold harmless the Client from and against any and all claims, damages, losses, and expenses arising from the Service Provider's work, including but not limited to claims of intellectual property infringement, defects in the deliverables, or breach of any representation or warranty.
+
+Section 8. Liability
+The Service Provider's liability under this Agreement shall be unlimited. The Client's liability shall not exceed the fees actually paid to the Service Provider under this Agreement.
+
+Section 9. Termination
+The Client may terminate this Agreement at any time, for any reason, with seven (7) days' written notice. Upon termination, the Client shall only pay for work completed and accepted prior to the termination date. The Service Provider may terminate only for cause (material breach by the Client) after providing thirty (30) days' written notice and a cure period.
+
+Section 10. Warranty
+The Service Provider warrants that all deliverables shall be free from material defects for a period of twelve (12) months following delivery. The Service Provider shall correct any defects at no additional cost during the warranty period.
+
+Section 11. Dispute Resolution
+Any disputes arising under this Agreement shall be resolved through binding arbitration in San Francisco, California. Each party shall bear its own costs and attorneys' fees.
+
+Section 12. Governing Law
+This Agreement shall be governed by the laws of the State of California.
+
+Section 13. Entire Agreement
+This Agreement constitutes the entire understanding between the parties. No modifications shall be effective unless in writing and signed by both parties.
+
+IN WITNESS WHEREOF, the parties have executed this Agreement as of the date first written above.
+
+Client: Digital Solutions Corp.
+By: ___________________________
+Name: Michael Chen
+Title: Director of Operations
+
+Service Provider: Priya Sharma
+___________________________

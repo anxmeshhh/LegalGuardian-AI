@@ -1,0 +1,149 @@
+{
+  "clause_type_to_risk": {
+    "Document Name": { "default": "LOW", "description": "Identifies the contract name — informational only" },
+    "Parties": { "default": "LOW", "description": "Names the parties involved — standard clause" },
+    "Agreement Date": { "default": "LOW", "description": "When the agreement was signed" },
+    "Effective Date": { "default": "LOW", "description": "When terms begin — usually low risk" },
+    "Expiration Date": { "default": "LOW", "description": "When the agreement ends" },
+    "Renewal Term": { "default": "MEDIUM", "description": "Auto-renewal terms can trap parties into extended commitments" },
+    "Notice Period To Terminate Renewal": { "default": "MEDIUM", "description": "Short notice periods can cause missed cancellation windows" },
+    "Governing Law": { "default": "LOW", "description": "Which jurisdiction's laws apply — standard but important" },
+    "Most Favored Nation": { "default": "MEDIUM", "description": "Requires matching best terms offered to any party" },
+    "Non-Compete": { "default": "HIGH", "description": "Restricts future employment or business activities" },
+    "Exclusivity": { "default": "HIGH", "description": "Prevents working with competitors — limits business freedom" },
+    "No-Solicit Of Customers": { "default": "MEDIUM", "description": "Prevents contacting customers after contract ends" },
+    "No-Solicit Of Employees": { "default": "MEDIUM", "description": "Prevents hiring employees from the other party" },
+    "Non-Disparagement": { "default": "LOW", "description": "Prevents negative public statements — usually mutual" },
+    "Termination For Convenience": { "default": "HIGH", "description": "Allows one party to end the contract without cause" },
+    "Rofr/Rofo/Rofn": { "default": "MEDIUM", "description": "Right of first refusal/offer — limits negotiation flexibility" },
+    "Change Of Control": { "default": "MEDIUM", "description": "What happens if a party is acquired or merges" },
+    "Anti-Assignment": { "default": "MEDIUM", "description": "Prevents transferring contract rights to third parties" },
+    "Revenue/Profit Sharing": { "default": "MEDIUM", "description": "Obligations to share revenue or profits" },
+    "Price Restrictions": { "default": "MEDIUM", "description": "Limits on pricing — can affect business strategy" },
+    "Minimum Commitment": { "default": "HIGH", "description": "Mandatory minimum purchase or service commitment" },
+    "Volume Restriction": { "default": "MEDIUM", "description": "Limits on production or transaction volume" },
+    "Ip Ownership Assignment": { "default": "HIGH", "description": "Transfers intellectual property rights — critical clause" },
+    "Joint Ip Ownership": { "default": "MEDIUM", "description": "Shared IP ownership — complex rights situation" },
+    "License Grant": { "default": "MEDIUM", "description": "Grants usage rights to intellectual property" },
+    "Non-Transferable License": { "default": "LOW", "description": "License cannot be given to others — standard restriction" },
+    "Affiliate License-Licensor": { "default": "MEDIUM", "description": "License extends to licensor's affiliates" },
+    "Affiliate License-Licensee": { "default": "MEDIUM", "description": "License extends to licensee's affiliates" },
+    "Unlimited/All-You-Can-Eat License": { "default": "LOW", "description": "Broad usage rights — generally favorable for licensee" },
+    "Irrevocable Or Perpetual License": { "default": "MEDIUM", "description": "License that cannot be taken back — permanent commitment" },
+    "Source Code Escrow": { "default": "LOW", "description": "Source code held by third party — protective measure" },
+    "Post-Termination Services": { "default": "MEDIUM", "description": "Obligations that continue after contract ends" },
+    "Audit Rights": { "default": "MEDIUM", "description": "Right to inspect the other party's records" },
+    "Uncapped Liability": { "default": "HIGH", "description": "No limit on financial liability — extremely risky" },
+    "Cap On Liability": { "default": "MEDIUM", "description": "Limits maximum liability — check if the cap is reasonable" },
+    "Liquidated Damages": { "default": "HIGH", "description": "Pre-set penalty amounts for breach — can be excessive" },
+    "Warranty Duration": { "default": "LOW", "description": "How long warranties last" },
+    "Insurance": { "default": "LOW", "description": "Insurance requirements — standard protective clause" },
+    "Covenant Not To Sue": { "default": "HIGH", "description": "Waives right to take legal action — significant rights waiver" },
+    "Third Party Beneficiary": { "default": "LOW", "description": "Third parties who benefit from the contract" },
+    "Indemnification": { "default": "HIGH", "description": "One party compensates the other for losses — can be very one-sided" }
+  },
+  "role_risk_modifiers": {
+    "employee": {
+      "Non-Compete": "HIGH",
+      "Termination For Convenience": "HIGH",
+      "Ip Ownership Assignment": "HIGH",
+      "Indemnification": "HIGH",
+      "Non-Disparagement": "MEDIUM",
+      "Uncapped Liability": "HIGH"
+    },
+    "employer": {
+      "Non-Compete": "LOW",
+      "Termination For Convenience": "LOW",
+      "Ip Ownership Assignment": "LOW",
+      "Indemnification": "MEDIUM",
+      "Non-Disparagement": "LOW",
+      "Uncapped Liability": "MEDIUM"
+    },
+    "tenant": {
+      "Termination For Convenience": "HIGH",
+      "Renewal Term": "HIGH",
+      "Notice Period To Terminate Renewal": "HIGH",
+      "Indemnification": "HIGH",
+      "Uncapped Liability": "HIGH",
+      "Liquidated Damages": "HIGH"
+    },
+    "landlord": {
+      "Termination For Convenience": "LOW",
+      "Renewal Term": "LOW",
+      "Notice Period To Terminate Renewal": "LOW",
+      "Indemnification": "LOW",
+      "Uncapped Liability": "LOW",
+      "Liquidated Damages": "LOW"
+    },
+    "service_provider": {
+      "Ip Ownership Assignment": "HIGH",
+      "Uncapped Liability": "HIGH",
+      "Indemnification": "HIGH",
+      "Non-Compete": "HIGH",
+      "Exclusivity": "HIGH",
+      "Termination For Convenience": "HIGH",
+      "Cap On Liability": "MEDIUM",
+      "Minimum Commitment": "MEDIUM"
+    },
+    "client": {
+      "Ip Ownership Assignment": "LOW",
+      "Uncapped Liability": "LOW",
+      "Indemnification": "LOW",
+      "Non-Compete": "LOW",
+      "Exclusivity": "LOW",
+      "Termination For Convenience": "LOW",
+      "Cap On Liability": "LOW"
+    },
+    "borrower": {
+      "Uncapped Liability": "HIGH",
+      "Liquidated Damages": "HIGH",
+      "Indemnification": "HIGH",
+      "Termination For Convenience": "HIGH",
+      "Minimum Commitment": "HIGH",
+      "Price Restrictions": "HIGH"
+    },
+    "lender": {
+      "Uncapped Liability": "LOW",
+      "Liquidated Damages": "LOW",
+      "Indemnification": "LOW",
+      "Termination For Convenience": "LOW"
+    },
+    "disclosing_party": {
+      "Non-Disparagement": "HIGH",
+      "Covenant Not To Sue": "HIGH",
+      "Termination For Convenience": "HIGH"
+    },
+    "receiving_party": {
+      "Non-Compete": "HIGH",
+      "Non-Disparagement": "MEDIUM",
+      "Post-Termination Services": "HIGH"
+    },
+    "policyholder": {
+      "Uncapped Liability": "HIGH",
+      "Indemnification": "HIGH",
+      "Covenant Not To Sue": "HIGH",
+      "Termination For Convenience": "HIGH",
+      "Exclusivity": "MEDIUM"
+    },
+    "insurer": {
+      "Uncapped Liability": "MEDIUM",
+      "Indemnification": "LOW",
+      "Covenant Not To Sue": "LOW"
+    },
+    "user": {
+      "Covenant Not To Sue": "HIGH",
+      "Indemnification": "HIGH",
+      "Uncapped Liability": "HIGH",
+      "Termination For Convenience": "HIGH",
+      "Non-Disparagement": "HIGH",
+      "Ip Ownership Assignment": "HIGH"
+    },
+    "platform": {
+      "Covenant Not To Sue": "LOW",
+      "Indemnification": "LOW",
+      "Uncapped Liability": "LOW",
+      "Termination For Convenience": "LOW"
+    },
+    "general": {}
+  }
+}
