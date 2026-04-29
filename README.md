@@ -157,6 +157,54 @@ Navigate to **http://localhost:5000** — the app will load with the premium dar
 
 ---
 
+### 📝 Sample Test Cases
+
+Copy and paste these snippets into the app to test how the AI analyzes different clauses and adjusts risk based on your role!
+
+**1. High-Risk Non-Compete**
+* **Document Type:** Employment Contract
+* **Your Role:** Employee
+* **Text to Paste:**
+  > *For a period of 24 months following the termination of this Agreement, the Employee shall not, directly or indirectly, engage in any business that competes with the Employer anywhere in the United States.*
+
+**2. Uncapped Liability**
+* **Document Type:** Freelance/Service Agreement
+* **Your Role:** Service Provider
+* **Text to Paste:**
+  > *The Service Provider shall be fully and unconditionally liable for any and all damages, losses, and expenses incurred by the Client, without limitation, regardless of the cause.*
+
+**3. Auto-Renewal Trap**
+* **Document Type:** Rental/Lease Agreement
+* **Your Role:** Tenant
+* **Text to Paste:**
+  > *This Lease shall automatically renew for successive twelve-month terms unless the Tenant provides written notice of non-renewal at least 90 days prior to expiration. Landlord may elect not to renew with 30 days notice.*
+
+**4. One-Sided Indemnification**
+* **Document Type:** NDA
+* **Your Role:** Receiving Party
+* **Text to Paste:**
+  > *The Receiving Party agrees to indemnify, defend, and hold harmless the Disclosing Party from any and all claims, damages, or liabilities arising out of this Agreement, including the Disclosing Party's own negligence.*
+
+**5. IP Ownership Assignment**
+* **Document Type:** Freelance/Service Agreement
+* **Your Role:** Service Provider
+* **Text to Paste:**
+  > *All work product, code, designs, and inventions created by the Service Provider, whether or not during working hours, shall be the sole, exclusive, and irrevocable property of the Client in perpetuity.*
+
+**6. Termination for Convenience**
+* **Document Type:** Employment Contract
+* **Your Role:** Employee
+* **Text to Paste:**
+  > *The Employer may terminate this Agreement at any time, for any reason, in its sole discretion, with five (5) days written notice. The Employee may terminate with sixty (60) days written notice.*
+
+**7. Standard Governing Law (Low Risk)**
+* **Document Type:** Other
+* **Your Role:** General
+* **Text to Paste:**
+  > *This Agreement shall be governed by and construed in accordance with the laws of the State of Delaware, without giving effect to its conflict of laws principles.*
+
+---
+
 ## 📊 NLP Pipeline Details
 
 ### Clause Classification (41 CUAD Categories)
