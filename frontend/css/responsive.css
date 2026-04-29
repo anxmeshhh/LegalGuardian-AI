@@ -1,0 +1,56 @@
+/* ═══════════════════════════════════════════════════════════════
+   LegalGuardian AI — Responsive Breakpoints
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ─── Tablet (≤ 900px) ─── */
+@media (max-width: 900px) {
+    .hero-title { font-size: clamp(2rem, 4vw, 3rem); }
+    .hero-stats { gap: var(--space-lg); }
+    .stat-number { font-size: 1.5rem; }
+
+    .risk-dashboard {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .risk-stats {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .risk-stat { flex: 1; min-width: 140px; }
+
+    .nav-links { display: none; }
+}
+
+/* ─── Mobile (≤ 600px) ─── */
+@media (max-width: 600px) {
+    .navbar { padding: var(--space-sm) var(--space-md); }
+    .nav-brand { font-size: 1rem; }
+
+    .hero { min-height: 70vh; padding: 100px var(--space-md) var(--space-xl); }
+    .hero-title { font-size: 1.8rem; }
+    .hero-subtitle { font-size: 1rem; }
+    .hero-stats { flex-wrap: wrap; gap: var(--space-md); }
+
+    .main-content { padding: 0 var(--space-md) var(--space-2xl); }
+
+    .input-panel { padding: var(--space-lg); }
+    .section-title { font-size: 1.4rem; }
+
+    .risk-gauge { width: 140px; height: 140px; }
+    .gauge-score { font-size: 2rem; }
+
+    .risk-stats { flex-direction: column; }
+    .risk-stat { min-width: auto; }
+
+    .heatmap-cell { width: 38px; height: 38px; font-size: 0.6rem; }
+
+    .clause-header { padding: var(--space-md); flex-wrap: wrap; }
+
+    .qa-message { max-width: 95%; }
+
+    .text-meta { flex-direction: column; gap: var(--space-sm); align-items: flex-start; }
+    .sample-contracts { flex-wrap: wrap; }
+}

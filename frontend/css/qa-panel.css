@@ -1,0 +1,143 @@
+/* ═══════════════════════════════════════════════════════════════
+   LegalGuardian AI — Q&A Panel Styles
+   ═══════════════════════════════════════════════════════════════ */
+
+.qa-panel {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    max-height: 600px;
+}
+
+.qa-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    min-height: 300px;
+}
+
+.qa-message {
+    display: flex;
+    gap: var(--space-md);
+    max-width: 85%;
+    animation: fadeInUp 0.3s ease;
+}
+
+.qa-message.user {
+    align-self: flex-end;
+    flex-direction: row-reverse;
+}
+
+.qa-avatar {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--bg-input);
+    border: 1px solid var(--border-subtle);
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.qa-message.user .qa-avatar { background: rgba(59, 130, 246, 0.15); }
+
+.qa-bubble {
+    background: var(--bg-input);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: var(--space-md) var(--space-lg);
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.qa-message.user .qa-bubble {
+    background: rgba(59, 130, 246, 0.1);
+    border-color: var(--border-accent);
+    color: var(--text-primary);
+}
+
+.qa-bubble ul {
+    margin: var(--space-sm) 0 0 var(--space-lg);
+}
+
+.qa-bubble li {
+    margin-bottom: var(--space-xs);
+    color: var(--text-accent);
+    font-size: 0.85rem;
+}
+
+.qa-confidence {
+    display: inline-block;
+    margin-top: var(--space-sm);
+    padding: 2px 8px;
+    background: var(--bg-card);
+    border-radius: var(--radius-full);
+    font-size: 0.72rem;
+    color: var(--text-muted);
+}
+
+/* ─── Q&A Input Area ─── */
+.qa-input-area {
+    display: flex;
+    gap: var(--space-sm);
+    padding: var(--space-md) var(--space-lg);
+    border-top: 1px solid var(--border-subtle);
+    background: var(--bg-secondary);
+}
+
+.qa-input {
+    flex: 1;
+    padding: var(--space-md);
+    background: var(--bg-input);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    transition: all var(--transition-base);
+}
+
+.qa-input:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.qa-input::placeholder { color: var(--text-muted); }
+.qa-input:disabled { opacity: 0.5; }
+
+.qa-send-btn {
+    padding: var(--space-md) var(--space-lg);
+    background: var(--accent-gradient);
+    border: none;
+    border-radius: var(--radius-md);
+    color: white;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+
+.qa-send-btn:hover:not(:disabled) {
+    box-shadow: var(--shadow-glow);
+}
+
+.qa-send-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

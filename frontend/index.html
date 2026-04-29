@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="LegalGuardian AI — NLP-powered legal contract risk analysis. Upload your contract, get instant clause-by-clause risk analysis with plain-English explanations.">
+    <title>LegalGuardian AI — Contract Risk Analysis</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Styles (modular) -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/input-panel.css">
+    <link rel="stylesheet" href="css/results.css">
+    <link rel="stylesheet" href="css/qa-panel.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <!-- ─── Background Effects ─── -->
+    <div class="bg-effects">
+        <div class="bg-orb bg-orb-1"></div>
+        <div class="bg-orb bg-orb-2"></div>
+        <div class="bg-orb bg-orb-3"></div>
+        <div class="grid-overlay"></div>
+    </div>
+
+    <!-- ─── Navigation ─── -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-brand">
+            <span class="nav-icon">⚖️</span>
+            <span class="nav-title">LegalGuardian<span class="nav-ai">AI</span></span>
+        </div>
+        <div class="nav-links">
+            <a href="#input-section" class="nav-link active" data-section="input">Analyze</a>
+            <a href="#results-section" class="nav-link" data-section="results">Results</a>
+            <a href="#qa-section" class="nav-link" data-section="qa">Q&A</a>
+        </div>
+        <div class="nav-status" id="nav-status">
+            <span class="status-dot"></span>
+            <span class="status-text">Ready</span>
+        </div>
+    </nav>
+
+    <!-- ─── Hero Section ─── -->
+    <header class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-icon">🛡️</span>
+                <span>NLP-Powered Contract Analysis</span>
+            </div>
+            <h1 class="hero-title">
+                Understand Your Contracts
+                <span class="hero-gradient">Before You Sign</span>
+            </h1>
+            <p class="hero-subtitle">
+                AI-powered clause-by-clause risk analysis with plain-English explanations, 
+                personalized to <em>your</em> role. No lawyer needed.
+            </p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number">41</span>
+                    <span class="stat-label">Clause Types</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">9</span>
+                    <span class="stat-label">Document Types</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">30+</span>
+                    <span class="stat-label">Legal Terms</span>
+                </div>
+            </div>
+            <a href="#input-section" class="hero-cta">
+                <span>Start Analyzing</span>
+                <span class="cta-arrow">→</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- ─── Main Content ─── -->
+    <main class="main-content">
+        
+        <!-- ─── Input Section (Smart 3-Step) ─── -->
+        <section class="section" id="input-section">
+            <div class="section-header">
+                <h2 class="section-title">📄 Analyze Your Contract</h2>
+                <p class="section-subtitle">Three simple steps — two clicks and one paste</p>
+            </div>
+
+            <div class="input-panel" id="input-panel">
+                <!-- Step 1: Document Type -->
+                <div class="input-step" id="step-1">
+                    <div class="step-header">
+                        <span class="step-number">1</span>
+                        <div class="step-info">
+                            <h3 class="step-title">Document Type</h3>
+                            <p class="step-desc">What kind of contract is this?</p>
+                        </div>
+                    </div>
+                    <select id="document-type" class="select-input">
+                        <option value="" disabled selected>Select document type...</option>
+                    </select>
+                </div>
+
+                <!-- Step 2: User Role -->
+                <div class="input-step" id="step-2">
+                    <div class="step-header">
+                        <span class="step-number">2</span>
+                        <div class="step-info">
+                            <h3 class="step-title">Your Role</h3>
+                            <p class="step-desc">Which party are you in this contract?</p>
+                        </div>
+                    </div>
+                    <select id="user-role" class="select-input" disabled>
+                        <option value="" disabled selected>First select a document type...</option>
+                    </select>
+                </div>
+
+                <!-- Step 3: Contract Text -->
+                <div class="input-step" id="step-3">
+                    <div class="step-header">
+                        <span class="step-number">3</span>
+                        <div class="step-info">
+                            <h3 class="step-title">Contract Text</h3>
+                            <p class="step-desc">Paste your contract or upload a file</p>
+                        </div>
+                    </div>
+                    <div class="text-input-area">
+                        <textarea 
+                            id="contract-text" 
+                            class="textarea-input" 
+                            placeholder="Paste your contract text here..."
+                            rows="10"
+                        ></textarea>
+                        <div class="upload-area" id="upload-area">
+                            <label for="file-upload" class="upload-label">
+                                <span class="upload-icon">📎</span>
+                                <span>Upload PDF, DOCX, or TXT</span>
+                            </label>
+                            <input type="file" id="file-upload" accept=".pdf,.docx,.txt" hidden>
+                            <span class="upload-filename" id="upload-filename"></span>
+                        </div>
+                        <div class="text-meta">
+                            <span id="char-count">0 characters</span>
+                            <div class="sample-contracts">
+                                <span>Try a sample:</span>
+                                <button class="sample-btn" data-sample="employment">Employment</button>
+                                <button class="sample-btn" data-sample="rental">Rental</button>
+                                <button class="sample-btn" data-sample="freelance">Freelance</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Analyze Button -->
+                <button class="analyze-btn" id="analyze-btn" disabled>
+                    <span class="btn-icon">🔍</span>
+                    <span class="btn-text">Analyze Contract</span>
+                    <span class="btn-loading" hidden>
+                        <span class="spinner"></span>
+                        Analyzing...
+                    </span>
+                </button>
+            </div>
+        </section>
+
+        <!-- ─── Results Section ─── -->
+        <section class="section hidden" id="results-section">
+            <div class="section-header">
+                <h2 class="section-title">📊 Risk Analysis Report</h2>
+                <p class="section-subtitle" id="results-subtitle"></p>
+            </div>
+
+            <!-- Overall Risk Dashboard -->
+            <div class="risk-dashboard" id="risk-dashboard">
+                <div class="risk-gauge-container">
+                    <div class="risk-gauge" id="risk-gauge">
+                        <svg viewBox="0 0 200 200" class="gauge-svg">
+                            <circle class="gauge-bg" cx="100" cy="100" r="85" />
+                            <circle class="gauge-fill" cx="100" cy="100" r="85" id="gauge-fill" />
+                        </svg>
+                        <div class="gauge-center">
+                            <span class="gauge-score" id="gauge-score">0</span>
+                            <span class="gauge-label" id="gauge-label">RISK SCORE</span>
+                        </div>
+                    </div>
+                    <div class="gauge-risk-level" id="gauge-risk-level">—</div>
+                </div>
+
+                <div class="risk-stats">
+                    <div class="risk-stat high" id="stat-high">
+                        <span class="risk-stat-icon">🔴</span>
+                        <span class="risk-stat-count">0</span>
+                        <span class="risk-stat-label">High Risk</span>
+                    </div>
+                    <div class="risk-stat medium" id="stat-medium">
+                        <span class="risk-stat-icon">🟡</span>
+                        <span class="risk-stat-count">0</span>
+                        <span class="risk-stat-label">Medium Risk</span>
+                    </div>
+                    <div class="risk-stat low" id="stat-low">
+                        <span class="risk-stat-icon">🟢</span>
+                        <span class="risk-stat-count">0</span>
+                        <span class="risk-stat-label">Low Risk</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Document Recommendations -->
+            <div class="doc-recommendations" id="doc-recommendations"></div>
+
+            <!-- Risk Heatmap -->
+            <div class="heatmap-container" id="heatmap-container">
+                <h3 class="subsection-title">🗺️ Clause Risk Heatmap</h3>
+                <div class="heatmap" id="heatmap"></div>
+            </div>
+
+            <!-- Clause Cards -->
+            <div class="clause-list" id="clause-list">
+                <div class="clause-filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="HIGH">🔴 High</button>
+                    <button class="filter-btn" data-filter="MEDIUM">🟡 Medium</button>
+                    <button class="filter-btn" data-filter="LOW">🟢 Low</button>
+                </div>
+                <div class="clauses-container" id="clauses-container"></div>
+            </div>
+
+            <!-- Disclaimer -->
+            <div class="disclaimer" id="disclaimer"></div>
+        </section>
+
+        <!-- ─── Q&A Section ─── -->
+        <section class="section hidden" id="qa-section">
+            <div class="section-header">
+                <h2 class="section-title">💬 Ask About Your Contract</h2>
+                <p class="section-subtitle">Ask any question — get answers from the contract text</p>
+            </div>
+            <div class="qa-panel" id="qa-panel">
+                <div class="qa-messages" id="qa-messages">
+                    <div class="qa-message system">
+                        <span class="qa-avatar">🤖</span>
+                        <div class="qa-bubble">
+                            I've analyzed your contract. Ask me anything about it — for example:
+                            <ul>
+                                <li>"What happens if I terminate early?"</li>
+                                <li>"What are the non-compete restrictions?"</li>
+                                <li>"What is the notice period for renewal?"</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="qa-input-area">
+                    <input type="text" id="qa-input" class="qa-input" placeholder="Ask a question about your contract..." disabled>
+                    <button class="qa-send-btn" id="qa-send-btn" disabled>
+                        <span>Send</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ─── Footer ─── -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <span>⚖️</span> LegalGuardian AI
+            </div>
+            <p class="footer-disclaimer">
+                This tool provides informational analysis only and does not constitute legal advice. 
+                Always consult a qualified attorney for legal matters.
+            </p>
+            <p class="footer-credits">
+                Built with Legal-BERT · CUAD Dataset · FastAPI · Python
+            </p>
+        </div>
+    </footer>
+
+    <!-- ─── Scripts (modular) ─── -->
+    <script src="js/config.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/results.js"></script>
+    <script src="js/qa.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

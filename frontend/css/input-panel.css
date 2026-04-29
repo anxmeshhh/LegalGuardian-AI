@@ -1,0 +1,111 @@
+/* ═══════════════════════════════════════════════════════════════
+   LegalGuardian AI — Input Panel Styles
+   ═══════════════════════════════════════════════════════════════ */
+
+.input-panel {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-xl);
+    padding: var(--space-2xl);
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+}
+
+/* ─── Input Step ─── */
+.input-step {
+    opacity: 1;
+    transition: opacity var(--transition-slow);
+}
+
+.step-header {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-md);
+    margin-bottom: var(--space-md);
+}
+
+.step-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--accent-gradient);
+    color: white;
+    font-weight: 700;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+}
+
+.step-info {
+    flex: 1;
+}
+
+.step-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+}
+
+.step-desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+/* ─── Text Input Area ─── */
+.text-input-area {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+/* ─── Upload Area ─── */
+.upload-area {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.upload-label {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-md);
+    background: var(--bg-input);
+    border: 1px dashed var(--border-light);
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+
+.upload-label:hover {
+    border-color: var(--accent-primary);
+    color: var(--text-accent);
+    background: rgba(59, 130, 246, 0.05);
+}
+
+.upload-filename {
+    color: var(--text-accent);
+    font-size: 0.85rem;
+}
+
+/* ─── Text Meta (char count, sample buttons) ─── */
+.text-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.sample-contracts {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
