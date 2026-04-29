@@ -21,10 +21,65 @@ const QA = {
         });
     },
 
+    /** Document type to suggested questions mapping */
+    suggestedQuestions: {
+        'employment_contract': [
+            "What happens if I terminate early?",
+            "What are the non-compete restrictions?",
+            "Who owns the intellectual property?"
+        ],
+        'rental_agreement': [
+            "What is the penalty for breaking the lease?",
+            "Who is responsible for repairs?",
+            "How much notice is required for renewal?"
+        ],
+        'freelance_agreement': [
+            "What are the payment terms?",
+            "Who owns the final deliverables?",
+            "What happens if there is a delay?"
+        ],
+        'nda': [
+            "What is considered confidential?",
+            "How long does confidentiality last?",
+            "What are the exceptions to confidentiality?"
+        ],
+        'default': [
+            "What are my main obligations?",
+            "How can this agreement be terminated?",
+            "What is the governing law?"
+        ]
+    },
+
     /** Enable Q&A after analysis */
     enable() {
         document.getElementById('qa-input').disabled = false;
         document.getElementById('qa-send-btn').disabled = false;
+        this.populateSuggestions();
+    },
+
+    /** Populate suggestion chips based on doc type */
+    populateSuggestions() {
+        const container = document.getElementById('qa-suggestions');
+        if (!container) return;
+        
+        container.innerHTML = '';
+        const docType = document.getElementById('document-type').value;
+        const questions = this.suggestedQuestions[docType] || this.suggestedQuestions['default'];
+        
+        questions.forEach((q, i) => {
+            const chip = document.createElement('div');
+            chip.className = 'suggestion-chip';
+            chip.textContent = q;
+            chip.style.animationDelay = `${i * 0.1}s`;
+            
+            chip.addEventListener('click', () => {
+                const input = document.getElementById('qa-input');
+                input.value = q;
+                this.handleSend();
+            });
+            
+            container.appendChild(chip);
+        });
     },
 
     /** Handle sending a question */
